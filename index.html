@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Birthday SOHNI 🎂</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+    background-size:400% 400%;
+    animation:bg 10s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.card{
+    width:90%;
+    max-width:360px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(12px);
+    border-radius:25px;
+    padding:30px;
+    text-align:center;
+    color:white;
+    box-shadow:0 10px 40px rgba(0,0,0,.25);
+    position:relative;
+    z-index:5;
+}
+
+h1{
+    font-family:'Pacifico',cursive;
+    font-size:2.4rem;
+    margin-bottom:10px;
+}
+
+.name{
+    color:#fff700;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+p{
+    margin-top:15px;
+    line-height:1.7;
+    font-size:1rem;
+}
+
+button{
+    margin-top:25px;
+    border:none;
+    background:#ff4d88;
+    color:white;
+    padding:14px 28px;
+    border-radius:50px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.08);
+    background:#ff1f6b;
+}
+
+.balloon{
+    position:absolute;
+    bottom:-120px;
+    width:55px;
+    animation:float 10s linear infinite;
+}
+
+.balloon::before{
+    content:"";
+    position:absolute;
+    width:55px;
+    height:70px;
+    border-radius:50%;
+}
+
+.balloon::after{
+    content:"";
+    position:absolute;
+    width:2px;
+    height:60px;
+    background:white;
+    left:26px;
+    top:65px;
+}
+
+.red::before{background:#ff4d6d;}
+.blue::before{background:#4da6ff;}
+.yellow::before{background:#ffd93d;}
+.pink::before{background:#ff66cc;}
+
+@keyframes float{
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+15%{
+opacity:1;
+}
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+}
+
+.b1{left:5%;animation-delay:0s;}
+.b2{left:25%;animation-delay:3s;}
+.b3{left:55%;animation-delay:6s;}
+.b4{left:80%;animation-delay:1.5s;}
+
+.heart{
+position:absolute;
+color:white;
+font-size:18px;
+animation:hearts 6s linear infinite;
+opacity:.7;
+}
+
+@keyframes hearts{
+0%{
+transform:translateY(100vh) scale(.5);
+opacity:0;
+}
+30%{
+opacity:1;
+}
+100%{
+transform:translateY(-20vh) scale(1.6);
+opacity:0;
+}
+}
+
+.footer{
+margin-top:20px;
+font-size:13px;
+opacity:.9;
+}
+
+@media(max-width:420px){
+h1{
+font-size:2rem;
+}
+.name{
+font-size:1.8rem;
+}
+p{
+font-size:.95rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h1>🎉 Happy Birthday 🎂</h1>
+
+<div class="name">SOHNI 💖</div>
+
+<p>
+May your special day be filled with endless happiness,
+beautiful memories, sweet surprises, and lots of love.
+May all your dreams come true and your smile always shine
+bright like the stars. ✨❤️
+</p>
+
+<button onclick="celebrate()">
+🎁 Celebrate
+</button>
+
+<div class="footer">
+Made with ❤️ Just for SOHNI
+</div>
+
+</div>
+
+<!-- Balloons -->
+<div class="balloon red b1"></div>
+<div class="balloon blue b2"></div>
+<div class="balloon yellow b3"></div>
+<div class="balloon pink b4"></div>
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<script>
+function celebrate(){
+
+var duration=5000;
+var end=Date.now()+duration;
+
+(function frame(){
+
+confetti({
+particleCount:4,
+angle:60,
+spread:60,
+origin:{x:0}
+});
+
+confetti({
+particleCount:4,
+angle:120,
+spread:60,
+origin:{x:1}
+});
+
+if(Date.now()<end){
+requestAnimationFrame(frame);
+}
+
+})();
+
+}
+</script>
+
+<script>
+// Automatic Confetti
+setTimeout(()=>{
+celebrate();
+},800);
+
+// Floating Hearts
+function createHeart(){
+
+const heart=document.createElement("div");
+
+heart.className="heart";
+heart.innerHTML=["💖","💕","💗","❤️","💝"][Math.floor(Math.random()*5)];
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+heart.style.fontSize=(15+Math.random()*20)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},7000);
+
+}
+
+setInterval(createHeart,300);
+</script>
+
+</body>
+</html>
